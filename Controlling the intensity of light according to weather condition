@@ -1,0 +1,33 @@
+int led=11,brightness=0,ldr=A0; 
+void setup() 
+{
+  Serial.begin(9600); 
+  pinMode(led,OUTPUT);
+  pinMode(ldr,INPUT);
+}
+void loop() 
+{
+  int ldrstatus=analogRead(ldr);
+  Serial.println(ldrstatus);
+  if(ldrstatus>=900)
+  {
+    brightness=255;
+    analogWrite(led,brightness);
+    Serial.println("For the Night is Dark and Full of Terrors");
+  }
+  else if(ldrstatus>300&&ldrstatus<=400)
+  {
+    brightness=125;
+    analogWrite(led,brightness);
+  }
+  else if(ldrstatus>50&&ldrstatus<=200)
+  {
+    brightness=60;
+    analogWrite(led,brightness);
+  }
+  else if(ldrstatus>30&&ldrstatus<=50)
+  {
+    brightness=0;
+    analogWrite(led,brightness);
+  }  
+  delay(1000);}
